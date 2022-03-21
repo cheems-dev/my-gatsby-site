@@ -6,6 +6,7 @@ import SelectBasic from "../../components/SelectBasic/SelectBasic";
 import Cards from "./Sections/SectionOne/Cards";
 // Service
 import { getAllPokemon } from "../../services/Pokemon.service";
+import { getDataWp } from "../../services/Wordpress";
 // Helper
 import { labels } from "./Home.helper";
 // Styles
@@ -13,16 +14,18 @@ import Styles from "./Home.styles";
 
 export default function Home() {
   const [list, setList] = useState([]);
-
+  const [wp, setWp] = useState({});
   useEffect(() => {
     async function fetchData() {
       const response = await getAllPokemon();
-
+      const responseTwo = await getDataWp();
       setList(response.results);
+      setWp(responseTwo);
     }
     fetchData();
   }, []);
 
+  console.log(wp);
   const [orderArray, setOrderArray] = useState("");
   const [filterArray, setFilterArray] = useState("");
 
@@ -36,6 +39,9 @@ export default function Home() {
 
   return (
     <Styles>
+      <h1 className="title">
+        Api consumido desde wordpress {wp?.name} {wp?.type} {wp?.damage}
+      </h1>
       <div className="container">
         <div className="header">
           <SearchBasic

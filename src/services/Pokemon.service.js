@@ -43,4 +43,5 @@ const getFoundPokemon = () => {
 
   return response;
 };
+
 export { getAllPokemon, getPokemonById, getGenerationPokemon, getFoundPokemon };

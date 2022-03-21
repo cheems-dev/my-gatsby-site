@@ -31,6 +31,11 @@ const Styles = styled.div`
       padding-bottom: 0;
     }
   }
+
+  .title {
+    font-size: 24px;
+    text-align: center;
+  }
 `;
 
 export default Styles;
